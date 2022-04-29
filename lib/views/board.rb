@@ -83,6 +83,8 @@ class Board
 
     def check_column(column, player)
         list = [0, 1, 2]
+        puts list
+        puts 
         list.delete(column)
         for row in list
             if get_case_row_column(row, column).content != player.symbol
