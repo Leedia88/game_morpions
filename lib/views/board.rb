@@ -42,12 +42,8 @@ class Board
     end
 
     def get_case(coordinate)
-        puts "je suis bord_case"
         @bord_case.each do |item|
-            puts "je suis sans le each"
                 if item.coordinate == coordinate
-                    puts item.class
-                    puts item
                     return item
                 end
         end
@@ -61,26 +57,24 @@ class Board
         end
     end
 
-    def choose_case(player, coordinate)
-        puts get_case(coordinate)
-        puts "getscase coordinate"
+    def is_case_available?(coordinate)
         if get_case(coordinate).is_occupied? 
             puts "Cette case est occupée"
+            return false
         else
-            return get_case(coordinate).change_content(player.symbol)
+            return true
         end
+    end
+
+    def choose_case(player, coordinate)
+        get_case(coordinate).change_content(player.symbol)
     end
 
     def check_row(row, player)
         list = [0, 1, 2]
         list.delete(row)
-        puts list
-        puts "list"
         for column in list
             if get_case_row_column(row, column).content != player.symbol
-                puts'j'
-                puts get_case_row_column(row, column).content
-                puts player.symbol
                 return false
             end
         end

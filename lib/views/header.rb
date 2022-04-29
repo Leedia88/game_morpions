@@ -1,8 +1,21 @@
 class Header
 
-def initialize(player_1, player_2)
-    @name1 = player_1.name
-    @name2 = player_2.name
+def initialize
+    puts "     ~° Bienvue sur mon jeu de morpions °~ "
+    puts "   _____                       __                     " 
+    puts "  /     \\   _________________ |__| ____   ____   ______"
+    puts " /  \\ /  \\ /  _ \\_  __ \\____ \\|  |/  _ \\ /    \\ /  ___/"
+    puts "/    Y    (  <_> )  | \\/  |_> >  (  <_> )   |  \\_____\\ "
+    puts "\\____|__  /\\____/|__|  |   __/|__|\\____/|___|  /____  >"
+    puts "        \\/             |__|                  \\/     \\/ "
+    puts
+    #http://patorjk.com/software/taag/#p=display&f=Graffiti&t=Morpions
+    puts "Qui veut commencer? Ecris le nom du joueur 1:"
+    print ">"
+    name_1 = gets.chomp
+    puts "Et puis le nom du joueur 2"
+    print ">"
+    name_2 = gets.chomp
     @score = {@name1 => 0, @name2=> 0}
 end
 
