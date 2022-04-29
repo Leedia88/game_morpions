@@ -1,7 +1,7 @@
 # game_morpions
 
 ## Principe du jeu  
-Il n'est pas utilise de le décrire  
+Il n'est pas utile de le décrire  
   
 ## Objets
 Class:  
@@ -9,3 +9,4 @@ Class:
 * Player
 * Board
 * BoardCase
+* Header
