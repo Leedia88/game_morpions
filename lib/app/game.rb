@@ -14,7 +14,7 @@ class Game
         name_2 = gets.chomp
         @player_1 = Player.new(name_1, "X")
         @player_2 = Player.new(name_2, "O")
-        @header = Header.new(@player_1, @player_2)
+        # @header = Header.new(@player_1, @player_2)
     end
 
     def ask_case(player)
