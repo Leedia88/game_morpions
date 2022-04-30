@@ -1,10 +1,3 @@
- #on a les 9 cases plus la ligne du haut et la colonne de gauche
-
-#  methode
- 
-#  display
-#  vider
-
 class Board
 
 @@list= [["A1", "A2", "A3"] ,["B1", "B2", "B3"], ["C1", "C2", "C3"]]
@@ -83,8 +76,6 @@ class Board
 
     def check_column(column, player)
         list = [0, 1, 2]
-        puts list
-        puts 
         list.delete(column)
         for row in list
             if get_case_row_column(row, column).content != player.symbol

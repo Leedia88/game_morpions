@@ -9,6 +9,4 @@ require 'views/board'
 require 'views/header'
 
 
-my_game = Game.new
-winner = my_game.play
-my_game.game_ending(winner)
+Header.new.play

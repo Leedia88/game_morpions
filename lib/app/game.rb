@@ -1,20 +1,12 @@
 class Game
 
-    def initialize
+    def initialize(player_1, player_2)
         @board = Board.new
         puts "-"*50
         puts "C'est parti pour une nouvelle partie de morpion :)"
         puts "-"*50
-        puts
-        puts "Qui veut commencer? Ecris le nom du joueur 1:"
-        print ">"
-        name_1 = gets.chomp
-        puts "Et puis le nom du joueur 2"
-        print ">"
-        name_2 = gets.chomp
-        @player_1 = Player.new(name_1, "X")
-        @player_2 = Player.new(name_2, "O")
-        # @header = Header.new(@player_1, @player_2)
+        @player_1 = player_1
+        @player_2 = player_2
     end
 
     def ask_case(player)
@@ -51,7 +43,7 @@ class Game
     def play
         @board.display
         number_turns = 0
-        while is_still_ongoing? && number_turns <= 10
+        while is_still_ongoing? && number_turns < 10
             turn(@player_1)
             number_turns +=1
             if is_still_ongoing?
@@ -88,6 +80,9 @@ class Game
         else
             puts "BRAVOO! #{player.name} a gagné!!!"
         end
+        puts "Voulez-vous rejouer?  'Y'/'N'"
+        print ">"
+        gets.chomp == "Y" ? false : true
     end
 
 end
