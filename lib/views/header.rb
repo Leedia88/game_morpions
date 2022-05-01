@@ -1,7 +1,8 @@
 class Header
 
 def initialize
-    puts "/n/n     ~° Bienvue sur mon jeu de morpions °~ "
+    system('clear')
+    puts "\n\n" +"     ~° Bienvue sur mon jeu de morpions °~ "
     puts "   _____                       __                     " 
     puts "  /     \\   _________________ |__| ____   ____   ______"
     puts " /  \\ /  \\ /  _ \\_  __ \\____ \\|  |/  _ \\ /    \\ /  ___/"
@@ -22,11 +23,14 @@ def initialize
 end
 
 def play
+    system('clear')
     my_game = Game.new(@player_1,@player_2)
     winner = my_game.play
+    my_game.game_ending(winner)
     victory(winner)
-    if my_game.game_ending(winner) == false
-        system(clear)
+    display_score
+    if  play_again? == false
+        system('clear')
         play
     else
         puts "A bientôt!"
@@ -34,16 +38,23 @@ def play
 end
 
 def display_score
-    puts "-"*50
+    print "-"*50 + "\n"
     @score.each do |key, value| 
-    print " "*10 + "#{key}: #{value}" +" "*10
+    print "    "+"#{key}: #{value}" +" "*8 
     end
-    puts "-"*50
+    puts "\n" + "-"*50
 end
 
 def victory(player)
-    @score[player.name]+=1
-    display_score
+    if player != nil
+        @score[player.name]+=1
+    end
+end
+
+def play_again?
+    puts "Voulez-vous rejouer?  'O'/'N'"
+    print ">"
+    gets.chomp == "O" ? false : true
 end
 
 end

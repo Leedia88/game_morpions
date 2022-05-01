@@ -1,16 +1,19 @@
 # game_morpions
 
-## Principe du jeu  
-Il n'est pas utile de le décrire  
+## Game Rules  
+Go back to childhood
   
 ## Objets  
-
 Class:  
-* Game
+* Header  
+launch games and saves players scores  
+* Game  
+launch a board with 2 players, ends when a player finds a combo ar the board is full, returns the winner
 * Player
+gets a name and a symbol, "Y" or "O"
 * Board
 * BoardCase
-* Header
+syntax is "A1", "A2"...."C3"
 ```
 |   _____                      .__                       |
 |  /     \   _________________ |__| ____   ____   ______ |  

@@ -1,29 +1,27 @@
 class Board
 
-@@list= [["A1", "A2", "A3"] ,["B1", "B2", "B3"], ["C1", "C2", "C3"]]
+    @@list= ["A1", "A2", "A3","B1", "B2", "B3","C1", "C2", "C3"]
+
+    attr_accessor :board_case
 
     def initialize
         @bord_case = []
-            for i in (0..2) do
-                for j in (0..2) do
-                    new_case = BordCase.new(@@list[i][j])
-                    new_case.column = j
-                    new_case.row = i
-                    @bord_case << new_case
-                end
-            end
+        for i in (0..9) do
+            new_case = BordCase.new(@@list[i], i)
+            @bord_case << new_case
+        end
     end
 
     def display
         puts
-        puts " "*12  + "1" + " "*5  + "2" + " "*5 + "3"
-        puts " "*10 +"-"*19
-        puts " "*7 +"A" + " "*2+ "|" + " "*2 + get_symbol("A1") + " "*2 + "|" + " "*2 + get_symbol("A2") + " "*2 + "|" + " "*2 + get_symbol("A3") + " "*2 + "|"
-        puts " "*10 + "-"*19
-        puts " "*7 +"B" + " "*2+ "|" + " "*2 + get_symbol("B1") + " "*2 + "|" + " "*2 + get_symbol("B2") + " "*2 + "|" + " "*2 + get_symbol("B3") + " "*2 + "|"
-        puts " "*10 + "-"*19
-        puts " "*7 +"C" + " "*2+ "|" + " "*2 + get_symbol("C1") + " "*2 + "|" + " "*2 + get_symbol("C2") + " "*2 + "|" + " "*2 + get_symbol("C3") + " "*2 + "|"
-        puts " "*10 + "-"*19
+        puts " "*6  + "1" + " "*5  + "2" + " "*5 + "3"
+        puts " "*4 +"-"*19
+        puts " " +"A" + " "*2+ "|" + " "*2 + get_symbol("A1") + " "*2 + "|" + " "*2 + get_symbol("A2") + " "*2 + "|" + " "*2 + get_symbol("A3") + " "*2 + "|"
+        puts " "*4 + "-"*19
+        puts " " +"B" + " "*2+ "|" + " "*2 + get_symbol("B1") + " "*2 + "|" + " "*2 + get_symbol("B2") + " "*2 + "|" + " "*2 + get_symbol("B3") + " "*2 + "|"
+        puts " "*4 + "-"*19
+        puts " "+"C" + " "*2+ "|" + " "*2 + get_symbol("C1") + " "*2 + "|" + " "*2 + get_symbol("C2") + " "*2 + "|" + " "*2 + get_symbol("C3") + " "*2 + "|"
+        puts " "*6 + "-"*19+"\n"
     end
 
     def get_symbol(coordinate)
@@ -42,14 +40,6 @@ class Board
         end
     end
 
-    def get_case_row_column(row, column)
-        for item in @bord_case
-            if item.column == column && item.row == row
-                return item
-            end
-        end
-    end
-
     def is_case_available?(coordinate)
         if get_case(coordinate).is_occupied? 
             puts "Cette case est occupée"
@@ -63,28 +53,70 @@ class Board
         get_case(coordinate).change_content(player.symbol)
     end
 
-    def check_row(row, player)
-        list = [0, 1, 2]
-        list.delete(row)
-        for column in list
-            if get_case_row_column(row, column).content != player.symbol
-                return false
-            end
-        end
-        return true
+    def is_victory?(coordinate)
+        check_row(coordinate) || check_column(coordinate) ? true : false
     end
 
-    def check_column(column, player)
-        list = [0, 1, 2]
-        list.delete(column)
-        for row in list
-            if get_case_row_column(row, column).content != player.symbol
-                return false
+       
+    def check_row(coordinate)
+        if ["A1", "A2", "A3"].include? coordinate
+            puts "a"
+            if get_symbol("A1") == get_symbol("A2") && get_symbol("A2") == get_symbol("A3")
+            return true
             end
         end
-        return true
+        if ["B1", "B2", "B3"].include? coordinate
+            puts "b"
+            if get_symbol("B1") == get_symbol("B2") && get_symbol("B2") == get_symbol("B3")
+                return true
+            end
+        end
+        if ["C1", "C2", "C3"].include? coordinate
+            puts "c"
+            if  get_symbol("C1") == get_symbol("C2") && get_symbol("C2") == get_symbol("C3") 
+                return true
+            end
+        end
+        return false
     end
 
-
+    def check_column(coordinate)
+        if ["A1", "B1", "C1"].include? coordinate
+            puts "1"
+            if get_symbol("A1") == get_symbol("C1") && get_symbol("C1") == get_symbol("B1")
+                return true
+            end
+        end
+        if ["A2", "B2", "C2"].include? coordinate
+            puts "2"
+            if get_symbol("A2") == get_symbol("B2") && get_symbol("B2") == get_symbol("C2")
+                return true
+            end
+        end
+        if ["A3", "B3", "C3"].include? coordinate
+            puts "3"
+            if  get_symbol("A3") == get_symbol("B3") && get_symbol("B3") == get_symbol("C3") 
+                return true
+            end
+        end
+        return false
+    end
+        # puts get_case(coordinate)
+        # i = get_case(coordinate).index
+        # puts i
+        # @board_case.each do |board_case|
+        #     if !board_case.is_occupied?
+        #         case bord_case.index
+        #         when (0..2)
+        #             @board_case[0].content == @board_case[1].content && @board_case[1].content == @board_case[2].content ? true : false
+        #         when (3..5)
+        #             @board_case[3].content == @board_case[5].content && @board_case[5].content == @board_case[5].content ? true : false
+        #         else
+        #             @board_case[6].content == @board_case[7].content && @board_case[7].content== @board_case[8].content ? true : false
+        #         end
+        #     else
+        #         return false
+        #     end
+        # end
 end
 

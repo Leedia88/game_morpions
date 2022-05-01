@@ -1,13 +1,13 @@
 # on a un smbol, un nom
 class BordCase
 
-    attr_accessor :content, :aligned, :coordinate, :row, :column
+    attr_accessor :content, :coordinate, :index
 
-def initialize(coordinate)
+def initialize(coordinate, index)
     @content = " "
     @coordinate = coordinate
-    @column
-    @row
+    @index = index
+
 end 
 
 
