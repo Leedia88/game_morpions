@@ -54,6 +54,7 @@ class Game
                 number_turns +=1
             end
         end
+        @board.display
         return who_is_victory?
     end
 

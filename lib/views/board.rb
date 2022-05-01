@@ -54,25 +54,20 @@ class Board
     end
 
     def is_victory?(coordinate)
-        check_row(coordinate) || check_column(coordinate) ? true : false
+        check_row(coordinate) || check_column(coordinate) || check_diag(coordinate) ? true : false
     end
 
        
     def check_row(coordinate)
         if ["A1", "A2", "A3"].include? coordinate
-            puts "a"
             if get_symbol("A1") == get_symbol("A2") && get_symbol("A2") == get_symbol("A3")
             return true
             end
-        end
-        if ["B1", "B2", "B3"].include? coordinate
-            puts "b"
+        elsif ["B1", "B2", "B3"].include? coordinate
             if get_symbol("B1") == get_symbol("B2") && get_symbol("B2") == get_symbol("B3")
                 return true
             end
-        end
-        if ["C1", "C2", "C3"].include? coordinate
-            puts "c"
+        else #["C1", "C2", "C3"].include? coordinate
             if  get_symbol("C1") == get_symbol("C2") && get_symbol("C2") == get_symbol("C3") 
                 return true
             end
@@ -82,41 +77,34 @@ class Board
 
     def check_column(coordinate)
         if ["A1", "B1", "C1"].include? coordinate
-            puts "1"
             if get_symbol("A1") == get_symbol("C1") && get_symbol("C1") == get_symbol("B1")
                 return true
             end
-        end
-        if ["A2", "B2", "C2"].include? coordinate
-            puts "2"
+        elsif ["A2", "B2", "C2"].include? coordinate
             if get_symbol("A2") == get_symbol("B2") && get_symbol("B2") == get_symbol("C2")
                 return true
             end
-        end
-        if ["A3", "B3", "C3"].include? coordinate
-            puts "3"
+        else
             if  get_symbol("A3") == get_symbol("B3") && get_symbol("B3") == get_symbol("C3") 
                 return true
             end
         end
         return false
     end
-        # puts get_case(coordinate)
-        # i = get_case(coordinate).index
-        # puts i
-        # @board_case.each do |board_case|
-        #     if !board_case.is_occupied?
-        #         case bord_case.index
-        #         when (0..2)
-        #             @board_case[0].content == @board_case[1].content && @board_case[1].content == @board_case[2].content ? true : false
-        #         when (3..5)
-        #             @board_case[3].content == @board_case[5].content && @board_case[5].content == @board_case[5].content ? true : false
-        #         else
-        #             @board_case[6].content == @board_case[7].content && @board_case[7].content== @board_case[8].content ? true : false
-        #         end
-        #     else
-        #         return false
-        #     end
-        # end
+
+    def check_diag(coordinate)
+        if ["A1", "B2", "C3"].include? coordinate
+            if get_symbol("A1") == get_symbol("B2") && get_symbol("B2") == get_symbol("C3")
+                return true
+            end
+        elsif ["A3", "B2", "C1"].include? coordinate
+            if get_symbol("A3") == get_symbol("B2") && get_symbol("B2") == get_symbol("C1")
+                return true
+            end
+        else
+            return false
+        end
+    end
+
 end
 
