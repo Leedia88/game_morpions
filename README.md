@@ -9,10 +9,10 @@ Class:
 launch games and saves players scores  
 * Game  
 launch a board with 2 players, ends when a player finds a combo ar the board is full, returns the winner
-* Player
+* Player  
 gets a name and a symbol, "Y" or "O"
 * Board
-* BoardCase
+* BoardCase  
 syntax is "A1", "A2"...."C3"
 ```
 |   _____                      .__                       |
