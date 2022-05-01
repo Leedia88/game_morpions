@@ -46,9 +46,7 @@ def display_score
 end
 
 def victory(player)
-    if player != nil
-        @score[player.name]+=1
-    end
+    @score[player.name]+=1 unless player == nil
 end
 
 def play_again?

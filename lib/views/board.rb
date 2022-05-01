@@ -34,19 +34,14 @@ class Board
 
     def get_case(coordinate)
         @bord_case.each do |item|
-                if item.coordinate == coordinate
-                    return item
-                end
+            if item.coordinate == coordinate
+                return item
+            end
         end
     end
 
     def is_case_available?(coordinate)
-        if get_case(coordinate).is_occupied? 
-            puts "Cette case est occupée"
-            return false
-        else
-            return true
-        end
+        get_case(coordinate).is_occupied? ? false : true
     end
 
     def choose_case(player, coordinate)

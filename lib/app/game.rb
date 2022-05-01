@@ -18,6 +18,7 @@ class Game
                 if @board.is_case_available?(chosen_case)
                     return chosen_case
                 else
+                    puts "Cette case est occupée"
                     ask_case(player)
                 end
                 break
@@ -73,11 +74,7 @@ class Game
     end
 
     def game_ending(player)
-        if player == nil
-            puts "Dommage!! Aucun de vous n'a gagné et ne remporte de point! :) "
-        else
-            puts "BRAVOO! #{player.name} a gagné!!!"
-        end
+        player!= nil ? puts "BRAVOO! #{player.name} a gagné!!!" : puts "Dommage!! Aucun de vous n'a gagné et ne remporte de point! :) "
     end
 
 end
